@@ -1,0 +1,30 @@
+<div class="modal fade" id="modalSegnalazione" tabindex="-1">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content wblw-modal">
+
+      <div class="modal-header border-0">
+        <h5 class="modal-title">
+          <i class="bi bi-shield-lock-fill me-2"></i> Invia Segnalazione
+        </h5>
+        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+      </div>
+
+      <div class="modal-body">
+        <form id="formSeg1">
+          <label class="form-label"><i class="bi bi-pencil-square me-2"></i>Titolo</label>
+          <input type="text" class="form-control modal-input mb-3" required>
+
+          <label class="form-label"><i class="bi bi-chat-text me-2"></i>Descrizione</label>
+          <textarea class="form-control modal-input mb-3" rows="4" required></textarea>
+        </form>
+      </div>
+
+      <div class="modal-footer border-0">
+        <button class="btn-wblw" onclick="document.getElementById('formSeg1').submit();">
+          <i class="bi bi-send-fill me-2"></i> Invia
+        </button>
+      </div>
+
+    </div>
+  </div>
+</div>
