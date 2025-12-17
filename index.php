@@ -18,13 +18,13 @@
   <div class="container-fluid d-flex justify-content-between align-items-center">
     
     <!-- Logo -->
-    <img src="/assets/images/Logo.png" alt="Logo" class="Logo">
+    <img src="assets/images/Logo.png" alt="Logo" class="Logo">
     
 
     <!-- Sezione pulsanti a destra -->
     <div class="d-flex align-items-center">
 
-      <a href="login.html" class="text-white me-3">
+      <a href="login.php" class="text-white me-3">
         <i class="bi bi-person-circle" style="font-size: 1.9rem;"></i>
       </a>
     </div>
@@ -54,7 +54,7 @@
 </div>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
-<script src="/assets/js/script.js"></script>
+<script src="assets/js/script.js"></script>
 </body>
 
 </html>

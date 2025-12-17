@@ -17,13 +17,13 @@
     <div class="container">
     <section class="login-section vh-100 d-flex align-items-center justify-content-center">
         <div class="login-container">
-            <a href="index.html" class="btn btn-outline-light btn-sm position-absolute top-0 end-0 m-3" aria-label="Torna alla home">
+            <a href="index.php" class="btn btn-outline-light btn-sm position-absolute top-0 end-0 m-3" aria-label="Torna alla home">
                 <i class="bi bi-house-fill me-1"></i>Home
             </a>
             <div class="row g-0 h-100 align-items-center">
                 <div class="col-lg-6 d-none d-lg-flex align-items-center justify-content-center login-left-section">
                         <div class="text-center">
-                            <img src="assets/images/login-image.png" alt="Login Image" class="login-image mb-4" />
+                            <img src="assets/images/Logo.png" alt="Login Image" class="login-image mb-4" />
                             <h2 class="mt-4 text-white">Benvenuto</h2>
                             <p class="text-white-50">Accedi al tuo account per continuare</p>
                         </div>
