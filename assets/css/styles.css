@@ -223,7 +223,7 @@ body {
     font-size: 2.5rem;
 }
 
-/* ========== WAVE ANIMATION presa da google========== */
+/* ========== WAVE ANIMATION presa da un sito per le animazioni background ========== */
 .page-wave {
     position: fixed;
     left: 0;
@@ -243,11 +243,17 @@ body {
 
 .page-wave .wave-anim {
     animation: wave 10s linear infinite;
+    fill: rgba(255,255,255,0.035) !important;
 }
 
 .page-wave .wave-anim-slow {
     animation: wave 18s linear infinite;
     opacity: 0.6;
+    fill: rgba(255,255,255,0.06) !important;
+}
+
+.page-wave path {
+    fill: rgba(255,255,255,0.035);
 }
 
 @keyframes wave {
