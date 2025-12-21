@@ -9,6 +9,24 @@
     --border-color: rgba(255,255,255,0.08);
 }
 
+/* ===== ADMIN LAYOUT ===== */
+.app-layout {
+  display: flex;
+  min-height: 100vh;
+}
+
+.wblw-sidebar {
+  width: 280px;
+  background: rgba(33,37,41,0.95);
+  border-right: 1px solid var(--border-color);
+}
+
+.wblw-content {
+  flex: 1;
+  padding: 30px;
+}
+
+
 /* ========== BASE ========== */
 body {
     padding-top: 70px;
@@ -297,4 +315,93 @@ body {
         font-size: 1rem;
     }
     .login-title { font-size: 1.8rem; }
+}
+
+/* ===== ADMIN LAYOUT (FIX) ===== */
+.admin-body {
+    padding-top: 0 !important;
+}
+
+.app-layout{
+  display: flex;
+  flex-direction: row;      /* <-- fondamentale senno c'è una disposizione errata */
+  min-height: 100vh;
+  align-items: stretch;
+}
+
+.wblw-sidebar{
+  flex: 0 0 280px;         
+  width: 280px;
+  background: rgba(33,37,41,0.95);
+  border-right: 1px solid var(--border-color);
+}
+
+.wblw-content{
+  flex: 1 1 auto;
+  min-width: 0;
+  padding: 30px;
+}
+
+/* Responsive */
+@media (max-width: 992px){
+  .app-layout{ flex-direction: column; }
+  .wblw-sidebar{
+    width: 100%;
+    flex: 0 0 auto;
+    border-right: 0;
+    border-bottom: 1px solid var(--border-color);
+  }
+}
+
+.wblw-sidebar a,
+.wblw-sidebar a:visited {
+    color: var(--white-50) !important;
+    text-decoration: none !important;
+}
+
+.wblw-sidebar a:hover {
+    color: var(--white) !important;
+    text-decoration: none !important;
+}
+
+/* Nav links */
+.wblw-sidebar .nav-pills .nav-link {
+    color: var(--white-50) !important;
+    text-decoration: none !important;
+}
+
+.wblw-sidebar .nav-pills .nav-link i {
+    color: inherit;
+}
+
+/* Link attivo */
+.wblw-sidebar .nav-pills .nav-link.active,
+.wblw-sidebar .nav-pills .nav-link.active:visited {
+    background: var(--white);
+    color: var(--bg-dark) !important;
+    text-decoration: none !important;
+}
+
+/* Dropdown */
+.wblw-sidebar .dropdown-item,
+.wblw-sidebar .dropdown-item:visited {
+    color: var(--white-50) !important;
+}
+
+.wblw-sidebar .dropdown-item:hover {
+    color: var(--white) !important;
+}
+
+/* Brand (Admin in alto) */
+.wblw-sidebar .sidebar-brand,
+.wblw-sidebar .sidebar-brand:visited {
+    color: var(--white) !important;
+    text-decoration: none !important;
+}
+
+/* Focus accessibile */
+.wblw-sidebar a:focus-visible {
+    outline: none;
+    box-shadow: 0 0 0 0.15rem rgba(255,255,255,0.18);
+    border-radius: 12px;
 }
