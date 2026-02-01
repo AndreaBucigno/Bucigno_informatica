@@ -199,9 +199,9 @@ body {
 .login-section { padding: 20px; }
 
 .login-container {
-    margin-left: 50px;
+    margin: 0 auto;
     width: 100%;
-    max-width: 1200px;
+    max-width: 900px;
     background: var(--dark-contrast);
     border-radius: 12px;
     box-shadow: 0 8px 30px rgba(0, 0, 0, 0.5);
@@ -209,11 +209,6 @@ body {
     min-height: 500px;
     position: relative;
     z-index: 5;
-}
-
-.login-left-section {
-    padding: 60px 40px;
-    border-right: 1px solid rgba(255,255,255,0.04);
 }
 
 .login-image {
@@ -236,47 +231,10 @@ body {
 }
 
 .login-title {
+    color: var(--white);
     font-weight: 700;
     margin-bottom: 10px;
     font-size: 2.5rem;
-}
-
-/* ========== WAVE ANIMATION presa da un sito per le animazioni background ========== */
-.page-wave {
-    position: fixed;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    height: 160px;
-    pointer-events: none;
-    z-index: 1;
-    overflow: hidden;
-}
-
-.page-wave svg {
-    width: 200%;
-    height: 100%;
-    display: block;
-}
-
-.page-wave .wave-anim {
-    animation: wave 10s linear infinite;
-    fill: rgba(255,255,255,0.035) !important;
-}
-
-.page-wave .wave-anim-slow {
-    animation: wave 18s linear infinite;
-    opacity: 0.6;
-    fill: rgba(255,255,255,0.06) !important;
-}
-
-.page-wave path {
-    fill: rgba(255,255,255,0.035);
-}
-
-@keyframes wave {
-    from { transform: translateX(0); }
-    to { transform: translateX(-50%); }
 }
 
 /* ========== RESPONSIVE ========== */
@@ -287,9 +245,8 @@ body {
     .login-container {
         flex-direction: column;
         min-height: auto;
-        margin-left: 0;
+        margin: 0 auto;
     }
-    .login-left-section { display: none; }
     .login-right-section { padding: 40px 30px; }
     .login-form-wrapper {
         max-width: 100%;

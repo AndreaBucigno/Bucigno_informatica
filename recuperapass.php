@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PAGINA WEB - Login</title>
+    <title>PAGINA WEB - Recupera Password</title>
     <link rel="stylesheet" href="assets/css/styles.css">
     <!--bootstrap link -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
@@ -22,45 +22,38 @@
                 <a href="index.php" class="btn btn-outline-light btn-sm position-absolute top-0 end-0 m-3" aria-label="Torna alla home">
                     <i class="bi bi-house-fill me-1"></i>Home
                 </a>
-                <div class="row g-0 h-100 align-items-center">
+                <div class="row g-0 h-100 align-items-center justify-content-center">
                     <div class="col-12 d-flex align-items-center justify-content-center login-right-section">
                         <div class="login-form-wrapper">
-                            <div class="text-center mb-4">
-                                <h1 class="login-title"><i class="fas fa-lock me-2"></i>Accedi</h1>
-                                <p class="text-white-50">Accedi per la visualizzazzione delle segnalazioni</p>
-                            </div>
 
-                            <form class="login-form" method="post" action="" role="form" aria-label="Login">
+                            <div class="text-center mb-3">
+                                <h1 class="login-title"><i class="fas fa-envelope-open-text me-2"></i>Recupera Password</h1>
+                                <p class="text-white-50">Riceverai una mail con le istruzioni per reimpostare la password</p>
+                            </div>
+                            <form class="login-form" method="post" action="" role="form" aria-label="Recupera password">
                                 <div class="form-group mb-4">
                                     <label class="form-label fw-bold mb-2" for="email">
                                         <i class="fas fa-envelope me-2"></i>Email
                                     </label>
                                     <input type="email" id="email" name="email" class="form-control form-control-lg login-input"
-                                        placeholder="Inserisci la tua email" required autocomplete="username" />
-                                </div>
-
-                                <div class="form-group mb-3">
-                                    <label class="form-label fw-bold mb-2" for="password">
-                                        <i class="fas fa-key me-2"></i>Password
-                                    </label>
-                                    <input type="password" id="password" name="password" class="form-control form-control-lg login-input"
-                                        placeholder="Inserisci la tua password" required autocomplete="current-password" />
-                                </div>
-
-                                <div class="d-flex align-items-center mb-4">
-                                    <a href="recuperapass.php" class="text-decoration-none link-primary">Password dimenticata?</a>
+                                        placeholder="Inserisci la tua email" required autocomplete="email" />
                                 </div>
 
                                 <div class="d-grid gap-2 mb-3">
                                     <button type="submit" class="btn btn-primary btn-lg login-button">
-                                        <i class="fas fa-sign-in-alt me-2"></i>Accedi
+                                        <i class="fas fa-paper-plane me-2"></i>Invia
                                     </button>
                                 </div>
 
+                                <div class="d-flex align-items-center justify-content-center">
+                                    <a href="login.php" class="btn btn-outline-light ">Torna al login</a>
 
+                                </div>
                             </form>
+
                         </div>
                     </div>
+
                 </div>
             </div>
         </section>
