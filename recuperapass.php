@@ -1,3 +1,39 @@
+<?php
+require_once __DIR__ . '/HandlerMail.php';
+
+$message = '';
+$message_type = '';
+
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    $email = filter_input(INPUT_POST, 'email', FILTER_VALIDATE_EMAIL);
+
+    if ($email) {
+        $mail = getMailerInstance();
+
+        if ($mail) {
+            try {
+                $mail->addAddress($email);
+                $mail->isHTML(true);
+                $mail->Subject = 'Recupero Password - Test';
+
+                $mail->Body = "<p>Ciao,</p><p>Questo è un test per il recupero password.</p>";
+                $mail->send();
+                $message_type = 'success';
+            } catch (\Exception $e) {
+                $message = 'Errore durante l\'invio della mail: ' . $e->getMessage();
+                $message_type = 'danger';
+            }
+        } else {
+            $message = 'Server di posta non configurato.';
+            $message_type = 'danger';
+        }
+    } else {
+        $message = 'Per favore inserisci un indirizzo email valido.';
+        $message_type = 'danger';
+    }
+}
+?>
+
 <!DOCTYPE html>
 <html lang="it">
 
@@ -30,6 +66,13 @@
                                 <h1 class="login-title"><i class="fas fa-envelope-open-text me-2"></i>Recupera Password</h1>
                                 <p class="text-white-50">Riceverai una mail con le istruzioni per reimpostare la password</p>
                             </div>
+
+                            <?php if (!empty($message)) : ?>
+                                <div class="alert alert-<?php echo $message_type; ?>" role="alert">
+                                    <?php echo htmlspecialchars($message); ?>
+                                </div>
+                            <?php endif; ?>
+
                             <form class="login-form" method="post" action="" role="form" aria-label="Recupera password">
                                 <div class="form-group mb-4">
                                     <label class="form-label fw-bold mb-2" for="email">
