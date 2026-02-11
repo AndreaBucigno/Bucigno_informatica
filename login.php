@@ -1,3 +1,37 @@
+<?php
+require_once __DIR__ . "/config/database.php";
+
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    $email = trim($_POST['email'] ?? '');
+    $password = $_POST['password'] ?? '';
+
+
+    $stmt = $pdo->prepare("SELECT * FROM utenti WHERE email = :email");
+    $stmt->execute(['email' => $email]);
+    $user = $stmt->fetch(PDO::FETCH_ASSOC);
+
+    $passwordMatched = false;
+    if ($user) {
+        $dbPassword = $user['password'] ?? $user['PSW'] ?? $user['psw'] ?? '';
+        $passwordMatched = $dbPassword && ($dbPassword === $password);
+    }
+
+    if ($passwordMatched) {
+        $userRole = $user['ruolo'] ?? $user['role'] ?? '';
+
+        // Redirect in base al ruolo
+        if ($userRole === 'admin') {
+            header("Location: admin.php");
+        } else {
+            header("Location: user.php");
+        }
+        exit();
+    } else {
+        $error_message = "Email o password errati.";
+        $message_type = "danger";
+    }
+}
+?>
 <!DOCTYPE html>
 <html lang="it">
 
@@ -30,7 +64,14 @@
                                 <p class="text-white-50">Accedi per la visualizzazzione delle segnalazioni</p>
                             </div>
 
-                            <form class="login-form" method="post" action="" role="form" aria-label="Login">
+                            <?php if (!empty($error_message)): ?>
+                                <div class="alert alert-<?php echo htmlspecialchars(isset($message_type) ? $message_type : 'danger'); ?> alert-dismissible fade show" role="alert">
+                                    <?php echo htmlspecialchars($error_message); ?>
+                                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                                </div>
+                            <?php endif; ?>
+
+                            <form class="login-form" method="post" action="login.php" role="form" aria-label="Login">
                                 <div class="form-group mb-4">
                                     <label class="form-label fw-bold mb-2" for="email">
                                         <i class="fas fa-envelope me-2"></i>Email
