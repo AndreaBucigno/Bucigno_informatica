@@ -1,4 +1,29 @@
 <?php
+require_once __DIR__ . "/config/database.php";
+
+if($_SERVER['REQUEST_METHOD'] === 'POST') {
+  try {
+    $sql = "SELECT * FROM utenti";
+    $stmt = $pdo->query($sql);
+    $rows = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+    $output = json_encode($rows, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE);
+    $filename = 'users.json';
+    header('Content-Type: application/json; charset=utf-8');
+    header('Content-Disposition: attachment; filename="' . $filename . '"');
+    header('Content-Length: ' . strlen($output));
+    echo $output;
+    exit();
+  } catch (PDOException $e) {
+    http_response_code(500);
+    $msg = 'Errore DB: ' . htmlspecialchars($e->getMessage());
+    echo '<div style="padding:16px;background:#f8d7da;color:#842029;border:1px solid #f5c2c7;border-radius:4px;">' . $msg . '</div>';
+    exit();
+  }
+
+}
+
+
 $title = "Dashboard";
 $sidebar = '
 <aside class="wblw-sidebar d-flex flex-column flex-shrink-0 p-3">
@@ -19,21 +44,6 @@ $sidebar = '
       </a>
     </li>
 
-    <li class="nav-item">
-      <a href="admin_utenti.php" class="nav-link">
-        <i class="bi bi-people"></i>
-        Gestisci Utenti
-      </a>
-    </li>
-
-    <li class="nav-item">
-      <a href="admin_segnalazioni.php" class="nav-link">
-        <i class="bi bi-flag"></i>
-        Segnalazioni
-      </a>
-    </li>
-
-
   </ul>
 
   <hr>
@@ -45,9 +55,7 @@ $sidebar = '
     </a>
 
     <ul class="dropdown-menu">
-      <li><a class="dropdown-item" href="admin_profilo.php">Profilo</a></li>
-      <li><hr class="dropdown-divider"></li>
-      <li><a class="dropdown-item" href="logout.php">Esci</a></li>
+      <li><a class="dropdown-item" href="login.php">Esci</a></li>
     </ul>
   </div>
 
@@ -65,8 +73,12 @@ $body = '
        style="background: var(--dark-contrast); border: 1px solid var(--border-color);">
 
     <div class="d-flex align-items-center gap-2 mb-2">
-      <i class="bi bi-table"></i>
-      <strong>DEVO COSTRUITRE LA TABELLA CON LE INFO PRESE DAL DB</strong>
+    <form action="admin.php" method="post">
+      <button type="submit" class="btn btn-primary btn-lg login-button">
+        Scarica json
+      </button>
+    </form>
+      
     </div>
 
   </div>

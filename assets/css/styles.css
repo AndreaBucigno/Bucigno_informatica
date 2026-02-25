@@ -342,11 +342,11 @@ body {
 /* Dropdown */
 .wblw-sidebar .dropdown-item,
 .wblw-sidebar .dropdown-item:visited {
-    color: var(--white-50) !important;
+    color: var(--bg-dark) !important;
 }
 
 .wblw-sidebar .dropdown-item:hover {
-    color: var(--white) !important;
+    color: var(--dark-contrast) !important;
 }
 
 /* Brand (Admin in alto) */
