@@ -1,24 +1,43 @@
 <?php
 require_once __DIR__ . "/config/database.php";
 
+$message = '';
 if($_SERVER['REQUEST_METHOD'] === 'POST') {
   try {
-    $sql = "SELECT * FROM utenti";
-    $stmt = $pdo->query($sql);
-    $rows = $stmt->fetchAll(PDO::FETCH_ASSOC);
+    // Se viene sottomesso il form di aggiunta utente
+    if(isset($_POST['action']) && $_POST['action'] === 'add_user') {
+      $email = $_POST['email'];
+      $ruolo = $_POST['ruolo'];
+      $password = $_POST['password'];
+      
+      $sql = "INSERT INTO utenti (email, ruolo, PSW) VALUES (:email, :ruolo, :password)";
+      $stmt = $pdo->prepare($sql);
+      $stmt->execute([
+        ':email' => $email,
+        ':ruolo' => $ruolo,
+        ':password' => $password
+      ]);
+      
+      $message = '<div class="alert alert-success alert-dismissible fade show" role="alert">✓ Utente aggiunto con successo!<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button></div>';
+    }
+    // Se viene sottomesso il form di download
+    elseif(isset($_POST['action']) && $_POST['action'] === 'download') {
+      $sql = "SELECT * FROM utenti";
+      $stmt = $pdo->query($sql);
+      $rows = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
-    $output = json_encode($rows, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE);
-    $filename = 'users.json';
-    header('Content-Type: application/json; charset=utf-8');
-    header('Content-Disposition: attachment; filename="' . $filename . '"');
-    header('Content-Length: ' . strlen($output));
-    echo $output;
-    exit();
+      $output = json_encode($rows, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE);
+      $filename = 'users.json';
+      header('Content-Type: application/json; charset=utf-8');
+      header('Content-Disposition: attachment; filename="' . $filename . '"');
+      header('Content-Length: ' . strlen($output));
+      echo $output;
+      exit();
+    }
   } catch (PDOException $e) {
     http_response_code(500);
-    $msg = 'Errore DB: ' . htmlspecialchars($e->getMessage());
-    echo '<div style="padding:16px;background:#f8d7da;color:#842029;border:1px solid #f5c2c7;border-radius:4px;">' . $msg . '</div>';
-    exit();
+    $message = 'Errore DB: ' . htmlspecialchars($e->getMessage());
+    $message = '<div class="alert alert-danger alert-dismissible fade show" role="alert">' . $message . '<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button></div>';
   }
 
 }
@@ -68,18 +87,46 @@ $body = '
 
   <h1 class="hero-wblw-title mb-2">Dashboard</h1>
   <p class="hero-wblw-desc mb-4">Panoramica rapida dell\'area admin.</p>
-
+  ' . $message . '
   <div class="p-3 rounded-3 mb-4"
        style="background: var(--dark-contrast); border: 1px solid var(--border-color);">
 
-    <div class="d-flex align-items-center gap-2 mb-2">
+    <div class="d-flex align-items-left gap-2 mb-2">
     <form action="admin.php" method="post">
+      <input type="hidden" name="action" value="download">
       <button type="submit" class="btn btn-primary btn-lg login-button">
-        Scarica json
+        Scarica Database Utenti
       </button>
-    </form>
-      
+    </form>  
     </div>
+
+
+    <hr class="hr" />
+
+    <h3 class="mb-3">Aggiungi Nuovo Utente</h3>
+    <form action="admin.php" method="post" class="row g-3">
+      <input type="hidden" name="action" value="add_user">
+      <div class="col-md-6">
+        <label for="email" class="form-label">Email</label>
+        <input type="email" class="form-control" id="email" name="email" required>
+      </div>
+      <div class="col-md-6">
+        <label for="Ruolo" class="form-label">Ruolo</label>
+        <select id="ruolo" name="ruolo" class="form-select" required>
+          <option value="">-- Seleziona Ruolo --</option>
+          <option value="admin">Admin</option>
+          <option value="user">user</option>
+          
+        </select>
+      </div>
+      <div class="col-md-6">
+        <label for="password" class="form-label">Password</label>
+        <input type="password" class="form-control" id="password" name="password" required>
+      </div>
+      <div class="col-12">
+        <button type="submit" class="btn btn-primary btn-lg login-button">Aggiungi Utente</button>
+      </div>
+    </form>
 
   </div>
 </main>
