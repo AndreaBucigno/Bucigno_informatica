@@ -25,4 +25,28 @@ document.addEventListener("DOMContentLoaded", () => {
             }
         })
         .catch(err => console.error("Errore nel caricamento della modal:", err));
-});
+
+    });
+
+
+
+    document.addEventListener("DOMContentLoaded", function() {
+        var btn = document.getElementById("toggleAddUser");
+        var container = document.getElementById("addUserContainer");
+        if (btn && container) {
+          btn.addEventListener("click", function() {
+            if (container.style.display === "none") {
+              container.style.display = "block";
+              btn.textContent = "Nascondi form";
+              btn.innerHTML += '<i class="bi bi-x-lg"></i>';
+            } else {
+              container.style.display = "none";
+              btn.textContent = "Aggiungi Nuovo Utente";
+            }
+          });
+        }
+      });
+
+      
+    new DataTable("#usersTable");
+    

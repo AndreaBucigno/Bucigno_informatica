@@ -7,6 +7,12 @@
     <title>SoftwareEngeniring - {{title}}</title>
     <link rel="icon" type="image/png" href="assets/images/Logo.png" />
 
+    <!-- data table CSS -->
+    <link rel="stylesheet" href="//cdn.datatables.net/2.3.7/css/dataTables.dataTables.min.css">
+
+    <!--data table JS-->
+    <script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
+
     <!-- jQuery -->
     <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
 
